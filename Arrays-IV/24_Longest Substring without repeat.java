@@ -28,4 +28,25 @@ public class Solution
         }
         return ans;
     }
+    
+    
+    //More Optimized Approach as we dont need to remove the prev elements
+    
+        public static int uniqueSubstrings(String input) 
+    {
+        char chArray[] = input.toCharArray();
+        int start = 0;
+        HashMap<Character,Integer> map = new HashMap();
+        int ans = 0;
+        for(int i=0;i<chArray.length;i++)
+        {
+            char ch  = chArray[i];
+            if(map.containsKey(ch))
+                start = Math.max(start, map.get(ch)+1);
+            map.put(ch,i); 
+            ans = Math.max(i-start+1,ans);
+                
+        }
+        return ans;
+    }
 }
